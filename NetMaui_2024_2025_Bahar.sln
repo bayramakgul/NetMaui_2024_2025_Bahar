@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1", "Hafta1\MauiApp1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hafta2", "Hafta2", "{C7FCBB0F-EFCD-4241-8727-C273C1602CBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiAppLayaout", "MauiAppLayaout\MauiAppLayaout.csproj", "{BE29E1E2-8817-43F6-BE3E-F96410A2E5EB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,18 +19,12 @@ Global
 		{1965E47D-59EB-4CB5-9AE2-6821D12CA3BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1965E47D-59EB-4CB5-9AE2-6821D12CA3BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1965E47D-59EB-4CB5-9AE2-6821D12CA3BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE29E1E2-8817-43F6-BE3E-F96410A2E5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE29E1E2-8817-43F6-BE3E-F96410A2E5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE29E1E2-8817-43F6-BE3E-F96410A2E5EB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{BE29E1E2-8817-43F6-BE3E-F96410A2E5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE29E1E2-8817-43F6-BE3E-F96410A2E5EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1965E47D-59EB-4CB5-9AE2-6821D12CA3BF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{BE29E1E2-8817-43F6-BE3E-F96410A2E5EB} = {C7FCBB0F-EFCD-4241-8727-C273C1602CBF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5F97D7F3-D0F7-4661-ADC0-CD1AA306138D}
