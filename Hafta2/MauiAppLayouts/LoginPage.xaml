@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppLayouts.LoginPage"
+             Title="LoginPage">
+    <StackLayout Orientation="Vertical" VerticalOptions="Start" Margin="20,50,20,20">
+        <VerticalStackLayout x:Name="loginStack"  Spacing="10">
+            <Label Text="Oturum Aç" HorizontalOptions="Center" 
+                   TextColor="DodgerBlue"
+                   FontSize="30"/>
+            <Label Text="Mail:"/>
+            <Entry Placeholder="Mail" Keyboard="Email"/>
+            <Label Text="Password:"/>
+            <Entry Placeholder="Password" IsPassword="True"/>
+            <Button Text="Oturum Aç" Clicked="Login_Clicked" />
+            <Button Text="Kayıt ol!" 
+                    Background="Transparent"
+                    TextColor="DodgerBlue"
+                    Clicked="ShowRegisterStack_Clicked"/>
+        </VerticalStackLayout>
+        <VerticalStackLayout x:Name="registerStack"  IsVisible="False" >
+            <Label Text="Kayıt yap"
+                   HorizontalOptions="Center" 
+                   TextColor="Blue"
+                   FontSize="30"/>
+            <Label Text="Ad Soyad:"/>
+            <Entry Placeholder="Ad Soyad"/>
+            <Label Text="Mail:" />
+            <Entry Placeholder="Mail" Keyboard="Email"/>
+            <Label Text="Şifre:"/>
+            <Entry Placeholder="Şifre" IsPassword="True" />
+
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+
+                <Button Text="Kayıt ol" Clicked="Register_Clicked" />
+                <Button Text="Zaten bir hesabım var"
+                    Background="Transparent"
+                    TextColor="Blue"
+                    Clicked="ShowLoginStack_Clicked"/>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </StackLayout>
+</ContentPage>

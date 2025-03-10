@@ -1,80 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.MainPage">
+<ContentPage
+    x:Class="MauiApp1.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
 
     <ScrollView>
 
         <StackLayout Padding="10" Spacing="5">
-            <Label Text="Kişi Bilgileri:"
-               FontSize="25"
-               TextColor="Red"
-               FontAttributes="Bold"
-               TextDecorations="Underline"/>
+            <Label
+                FontAttributes="Bold"
+                FontSize="25"
+                Text="Kişi Bilgileri:"
+                TextColor="Red"
+                TextDecorations="Underline" />
 
-            <SearchBar Placeholder="kişi ara"
-                       PlaceholderColor="DodgerBlue"/>
+            <SearchBar Placeholder="kişi ara" PlaceholderColor="DodgerBlue" />
 
-            <Label Text="Ad Soyad"/>
-            <Entry 
-            FontSize="25"
-            Placeholder="Adınız soyadınız"/>
+            <Label Text="Ad Soyad" />
+            <Entry FontSize="25" Placeholder="Adınız soyadınız" />
 
-            <Label Text="Mail"/>
-            <Entry 
-            FontSize="25"
-            Placeholder="Mail Adresiniz"
-            Keyboard="Email"/>
+            <Label Text="Mail" />
+            <Entry
+                FontSize="25"
+                Keyboard="Email"
+                Placeholder="Mail Adresiniz" />
 
-            <Label Text="Telefon"/>
-            <Entry 
-            FontSize="25"
-            Placeholder="Telefon Numaranız"
-            Keyboard="Telephone"/>
+            <Label Text="Telefon" />
+            <Entry
+                FontSize="25"
+                Keyboard="Telephone"
+                Placeholder="Telefon Numaranız" />
 
-            <Label Text="Adres"/>
+            <Label Text="Adres" />
             <Editor HeightRequest="100" MaxLength="255" />
 
-            <Label Text="Şifre"/>
-            <Entry 
-            FontSize="25"
-            Placeholder="Şifre"
-            IsPassword="True"/>
+            <Label Text="Şifre" />
+            <Entry
+                FontSize="25"
+                IsPassword="True"
+                Placeholder="Şifre" />
 
-            <Label Text="Doğum Tarihi"/>
+            <Label Text="Doğum Tarihi" />
 
             <HorizontalStackLayout Spacing="10">
-                <DatePicker MinimumDate="01.01.1980" 
-                    MaximumDate="01.01.2005" 
+                <DatePicker
                     Date="01.01.2000"
-                    VerticalOptions="Center"/>
-                <TimePicker VerticalOptions="End"/>
+                    MaximumDate="01.01.2005"
+                    MinimumDate="01.01.1980"
+                    VerticalOptions="Center" />
+                <TimePicker VerticalOptions="End" />
             </HorizontalStackLayout>
 
-            <Label Text="Cinsiyet"/>
+            <Label Text="Cinsiyet" />
             <HorizontalStackLayout Spacing="20">
-                <RadioButton Content="Erkek"/>
-                <RadioButton Content="Kadın"/>
+                <RadioButton Content="Erkek" />
+                <RadioButton Content="Kadın" />
             </HorizontalStackLayout>
 
 
 
-            <Label Text="Kan Grubu"/>
+            <Label Text="Kan Grubu" />
             <HorizontalStackLayout Spacing="20">
-                <RadioButton Content="AB+" GroupName="kan"/>
-                <RadioButton Content="A+" GroupName="kan"/>
-                <RadioButton Content="B+" GroupName="kan"/>
-                <RadioButton Content="0+" GroupName="kan"/>
+                <RadioButton Content="AB+" GroupName="kan" />
+                <RadioButton Content="A+" GroupName="kan" />
+                <RadioButton Content="B+" GroupName="kan" />
+                <RadioButton Content="0+" GroupName="kan" />
             </HorizontalStackLayout>
             <HorizontalStackLayout Spacing="20">
-                <RadioButton Content="AB-" GroupName="kan"/>
-                <RadioButton Content="A-" GroupName="kan"/>
-                <RadioButton Content="B-" GroupName="kan"/>
-                <RadioButton Content="0-" GroupName="kan"/>
+                <RadioButton Content="AB-" GroupName="kan" />
+                <RadioButton Content="A-" GroupName="kan" />
+                <RadioButton Content="B-" GroupName="kan" />
+                <RadioButton Content="0-" GroupName="kan" />
             </HorizontalStackLayout>
 
-            <Label Text="Tuttuğu Takım"/>
+            <Label Text="Tuttuğu Takım" />
 
             <Picker>
                 <Picker.Items>
@@ -86,37 +86,36 @@
             </Picker>
 
 
-            <Label Text="İlgilendiği Sporlar"/>
+            <Label Text="İlgilendiği Sporlar" />
             <HorizontalStackLayout>
-                <CheckBox/>
-                <Label Text="Futbol" VerticalOptions="Center"/>
+                <CheckBox />
+                <Label Text="Futbol" VerticalOptions="Center" />
             </HorizontalStackLayout>
             <HorizontalStackLayout>
-                <CheckBox/>
-                <Label Text="Voleybol" VerticalOptions="Center"/>
+                <CheckBox />
+                <Label Text="Voleybol" VerticalOptions="Center" />
             </HorizontalStackLayout>
             <HorizontalStackLayout>
-                <CheckBox/>
-                <Label Text="Basketbol" VerticalOptions="Center"/>
+                <CheckBox />
+                <Label Text="Basketbol" VerticalOptions="Center" />
             </HorizontalStackLayout>
             <HorizontalStackLayout Spacing="10">
-                <Label Text="Sözleşmeyi kabul ediyorum" VerticalOptions="Center"/>
-                <Switch VerticalOptions="Center" 
-                        OnColor="DodgerBlue"/>
+                <Label Text="Sözleşmeyi kabul ediyorum" VerticalOptions="Center" />
+                <Switch OnColor="DodgerBlue" VerticalOptions="Center" />
             </HorizontalStackLayout>
 
-            <Label BindingContext="{x:Reference slider}"
-                   Text="{Binding Value, StringFormat='Kardeş sayısı: {0:F0}'}" />
-            <Slider x:Name="slider" 
-                    Minimum="0"
-                    Maximum="15"
-                    MinimumTrackColor="Green"
-                    MaximumTrackColor="Red"
-                    ThumbColor="Green"/>
+            <Label BindingContext="{x:Reference slider}" Text="{Binding Value, StringFormat='Kardeş sayısı: {0:F0}'}" />
+            <Slider
+                x:Name="slider"
+                Maximum="15"
+                MaximumTrackColor="Red"
+                Minimum="0"
+                MinimumTrackColor="Green"
+                ThumbColor="Green" />
 
-            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-                <Button Text="Tamam" WidthRequest="100"/>
-                <Button Text="İptal" WidthRequest="100"/>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button Text="Tamam" WidthRequest="100" />
+                <Button Text="İptal" WidthRequest="100" />
             </HorizontalStackLayout>
         </StackLayout>
     </ScrollView>

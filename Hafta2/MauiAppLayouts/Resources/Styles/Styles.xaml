@@ -448,4 +448,23 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+
+    <Style TargetType="Button" x:Key="btnOkStyle">
+        <Setter Property="Text" Value="OK"/>
+        <Setter Property="Background" Value="LightGreen"/>
+        <Setter Property="TextColor" Value="DarkGreen"/>
+        <Setter Property="FontSize" Value="Body"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="WidthRequest" Value="150"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="btnCancelStyle">
+        <Setter Property="Text" Value="Cancel"/>
+        <Setter Property="Background" Value="Pink"/>
+        <Setter Property="TextColor" Value="DarkRed"/>
+        <Setter Property="FontSize" Value="Body"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="WidthRequest" Value="150"/>
+    </Style>
+
 </ResourceDictionary>
