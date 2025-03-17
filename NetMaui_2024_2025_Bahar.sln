@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hafta2", "Hafta2", "{C7FCBB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiAppLayouts", "Hafta2\MauiAppLayouts\MauiAppLayouts.csproj", "{80526DF2-C43E-400E-9C3E-DD3CC94E3297}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hafta3", "Hafta3", "{707DA459-EB11-4D9D-80C7-87DC528A928C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

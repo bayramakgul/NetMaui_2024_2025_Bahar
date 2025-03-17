@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppLayouts.AbsoluteLayoutPage"
+             Title="Çiçekçi">
+
+    <AbsoluteLayout>
+
+        <Image 
+            Aspect="Fill"
+            AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+            Source="https://cdn03.ciceksepeti.com/cicek/at727-1/XL/at727-1-8dcf9c3a8ef3d3b-5bc39b87.jpg"/>
+
+        <Image Source="sale.png" Scale="2" 
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               AbsoluteLayout.LayoutBounds="0.90,0.05,50,50"
+               />
+
+        <Label Text="&#x1F329;" FontFamily="faw" FontSize="150"/>
+        <Label Text="&#xE706;" FontFamily="seg" FontSize="50"
+               TextColor="Blue"
+               FontAttributes="Bold"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               AbsoluteLayout.LayoutBounds="0.75,0.05,150,150"/>
+
+        <Border AbsoluteLayout.LayoutBounds="0,1,1,0.5" 
+                AbsoluteLayout.LayoutFlags="All"
+                StrokeThickness="2" 
+                Margin="5"
+                Background="Black"
+                Opacity="0.90"
+                StrokeShape="RoundRectangle 50,50,0,0">
+
+            <Grid RowDefinitions="Auto,Auto,Auto,*,Auto"
+                  ColumnDefinitions="*">
+
+                <Label Text="Vazoda 7 Gül" TextColor="White" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       />
+
+                <Label Grid.Row="2" 
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="599₺" FontSize="30" FontAttributes="Bold" TextColor="Cyan"/>
+                            <Span Text="    "/>
+                            <Span Text="799₺" FontSize="20" FontAttributes="None"
+                                  TextColor="Orange"
+                                  TextDecorations="Strikethrough" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <ScrollView Grid.Row="3" >
+                <Label 
+                    TextColor="White" 
+                    Text="Sevgiyi, samimiyeti ve derin bağları temsil eden özel bir aranjman arıyorsanız, buldunuz! Paşabahçe Akvaryum Vazoda 7 Kırmızı Gül aranjmanı, aşkınızın ve samimiyetinizin en derin yansıması olacak. Akvaryum vazoda okaliptuslar ile süslenen 7 kırmızı gül, sevdiklerinizin kalbine tatlı bir dokunuş yaparken duygularınızı en içten şekilde ifade etmenizi de sağlayacak. Her bir kırmızı gül, tutkunun ve aşkın temsilcisi olarak hediye ettiğiniz kişinin gününü aydınlatacak. Sevgiliniz, eşiniz veya değer verdiğiniz dostlarınıza bu özel ve anlamlı hediye ile duygularınızı en saf haliyle aktarabilirsiniz. Sevdiklerinizin kalbinde derin ve kalıcı bir iz bırakmak istiyorsanız, Paşabahçe Akvaryum Vazoda 7 Kırmızı Gül aranjmanını tercih edebilirsiniz. Özel günlerde veya sadece sevginizi ifade etmek istediğiniz herhangi bir günde, bu zarif ve estetik aranjmanı tercih ederek, sevdiklerinizin yüzünde unutulmaz bir tebessüm yaratabilirsiniz. Siparişiniz sonrasında çıkacak “Not oluşturma” sayfasında birkaç cümlelik not oluşturarak hediyenizi daha anlamlı bir hale getirmeyi unutmayın."
+                       />
+                    
+                </ScrollView>
+
+                <Border StrokeThickness="3" Margin="20,0" Grid.Row="1"/>
+                <Button Text="Sepete Ekle" Grid.Row="4" Margin="3" Background="DimGray"/>
+
+            </Grid>
+            
+        </Border>
+    </AbsoluteLayout>
+    
+</ContentPage>

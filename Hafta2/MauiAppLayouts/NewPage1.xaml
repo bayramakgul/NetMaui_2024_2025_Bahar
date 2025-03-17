@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppLayouts.NewPage1"
+             Title="NewPage1">
+    
+    <RefreshView IsVisible="True"
+        Refreshing="RefreshView_Refreshing">
+    <Grid>
+
+
+        <Image x:Name="cicek"
+               Aspect="Fill"
+               Source="https://cdn03.ciceksepeti.com/cicek/at727-1/XL/at727-1-8dcf9c3a8ef3d3b-5bc39b87.jpg"/>
+
+        <ActivityIndicator 
+            WidthRequest="150"
+            HeightRequest="150"
+            Color="Blue"
+            IsRunning="{Binding Source={x:Reference cicek}, Path=IsLoading}"/>
+        </Grid>
+    </RefreshView>
+
+</ContentPage>
