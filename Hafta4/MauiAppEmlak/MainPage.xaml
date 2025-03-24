@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppEmlak.MainPage">
+
+    
+    <CollectionView x:Name="lstIlanlar"
+                    ItemsSource="{Binding Ilanlar}"
+                    SelectionMode="Single"
+                    SelectionChanged="lstIlanlar_SelectionChanged"
+                    >
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView>
+
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="📞 Telefon" Clicked="ButtonPhone_Clicked" />
+                            <MenuFlyoutItem Text="📧 Email" Clicked="ButtonEmail_Clicked"/>
+                            <MenuFlyoutItem Text="📝 Detay" Clicked="ButtonDetail_Clicked"/>
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+                    
+
+                    <SwipeView.LeftItems>
+                        <SwipeItem Text="iletişim" Clicked="SwipeItem_LeftClicked"/>
+                    </SwipeView.LeftItems>
+                    <SwipeView.RightItems>
+                        <SwipeItem Text="Detay" IconImageSource="dotnet_bot.png" Clicked="SwipeItem_RightClicked"/>
+                    </SwipeView.RightItems>
+
+                    <Border StrokeThickness="0.5" Margin="5" Padding="5">
+                        <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="5"
+                      ColumnDefinitions="100,*,Auto" ColumnSpacing="10">
+
+                            <ActivityIndicator Grid.RowSpan="3"
+                            IsRunning="{Binding Source={x:Reference res}, Path=IsLoading}" />
+
+                            <Image x:Name="res" Grid.RowSpan="3" Source="{Binding ResimLinkleri[0]}" 
+                           Aspect="AspectFill"/>
+
+                            <Label Grid.Column="1" Grid.Row="0"
+                           Text="{Binding IlanBasligi}" FontSize="20"/>
+
+                            <Label Grid.Column="1" Grid.Row="1"
+                           Text="{Binding Fiyat, StringFormat='💰₺{0:N0}'}" FontSize="16"/>
+
+                            <Label Grid.Column="1" Grid.Row="2"
+                           Text="{Binding Konum, StringFormat='📍{0}'}"/>
+
+
+                            <Button Grid.Column="2" Grid.Row="0" Text="📞" Clicked="ButtonPhone_Clicked" Background="Transparent"/>
+                            <Button Grid.Column="2" Grid.Row="1" Text="📧" Clicked="ButtonEmail_Clicked" Background="Transparent"/>
+                            <Button Grid.Column="2" Grid.Row="2" Text="📝" Clicked="ButtonDetail_Clicked" Background="Transparent"/>
+
+                        </Grid>
+                    </Border>
+                </SwipeView>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>

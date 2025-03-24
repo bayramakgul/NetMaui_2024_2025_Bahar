@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppEmlak.IlanDetayPage"
+             Title="İlan Detayları">
+    <ScrollView>
+        <StackLayout Margin="10">
+            <Label Text="{Binding IlanBasligi}" FontSize="20" />
+            <Grid>
+          
+                <Image x:Name="res" Source="{Binding Source={x:Reference lstResim}, Path=SelectedItem}" Aspect="AspectFill"/>
+                 <ActivityIndicator IsRunning="{Binding Source={x:Reference res}, Path=IsLoading}" />
+            </Grid>
+
+            <CollectionView x:Name="lstResim" 
+                            ItemsLayout="HorizontalList"
+                            SelectionMode="Single"
+                            HorizontalScrollBarVisibility="Always">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Image x:Name="seciliResim" HeightRequest="60" Source="{Binding}" />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            
+            <Label Text="{Binding Fiyat, StringFormat='💰₺{0:N0}'}" FontSize="20"/>
+            <Label Text="{Binding Konum, StringFormat='📍{0}'}" FontSize="20"/>
+            <Label Text="{Binding Metrekare, StringFormat='Toplam Alan: {0} m2'}"/>
+            <Label Text="{Binding Aciklama}" />
+            <Label Text="{Binding ImarOran, StringFormat='İmar Oranı: %{0}'}" />
+
+            <Label Text=""/>
+            <Label Text="{Binding IletisimTelefon}"/>
+            <Label Text="{Binding IletisimEmail}"/>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
