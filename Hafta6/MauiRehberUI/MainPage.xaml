@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiRehberUI.MainPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            IconImageSource="user_add.png"
+            Text="Ekle"
+            Priority="0"
+            Order="Primary" 
+            Clicked="AddContactClicked"/>
+
+    </ContentPage.ToolbarItems>
+
+
+    <CollectionView x:Name="lstContacts">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+
+                <SwipeView>
+
+                    <FlyoutBase.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Clicked="AddPictureClicked"    Text="Resim Ekle" CommandParameter="{Binding}"/>
+                            <MenuFlyoutItem Clicked="DeleteContactClicked" Text="Kişi Sil"   CommandParameter="{Binding}"/>
+                            <MenuFlyoutItem Clicked="EditContactClicked"   Text="📝 Düzenle" CommandParameter="{Binding}"/>
+                        </MenuFlyout>
+                    </FlyoutBase.ContextFlyout>
+
+                    <SwipeView.LeftItems>
+                        <SwipeItem Text="Resim Ekle"
+                                   Invoked="AddPictureClicked"
+                                   BackgroundColor="SkyBlue"
+                                   CommandParameter="{Binding}"/>
+                    </SwipeView.LeftItems>
+
+                    <SwipeView.RightItems>
+                        <SwipeItem Text="Sil"
+                                   BackgroundColor="Red"
+                                   Invoked="DeleteContactClicked"
+                                   CommandParameter="{Binding}"/>
+                        <SwipeItem Text="Düzenle"
+                                      BackgroundColor="Orange"
+                                      Invoked="EditContactClicked"
+                                   CommandParameter="{Binding}"/>
+                    </SwipeView.RightItems>
+
+                    <Border StrokeThickness="1" Stroke="Orange">
+                        <Grid RowDefinitions="Auto,Auto,Auto"
+                          ColumnDefinitions="Auto,*" ColumnSpacing="10"
+                          Margin="5">
+
+                            <Border Grid.Row="0"  Grid.Column="0" 
+                                Grid.RowSpan="3"
+                                StrokeShape="RoundRectangle 80">
+
+                                <Image Source="{Binding Picture}"
+                               HeightRequest="60"
+                               WidthRequest="60"
+                               Aspect="AspectFill"
+                               />
+                            </Border>
+
+
+                            <Label Text="{Binding FullName}"
+                               Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="{Binding PhoneNumber}"
+                               Grid.Row="1" Grid.Column="1"/>
+                            <Label Text="{Binding Email}"
+                               Grid.Row="2" Grid.Column="1"/>
+
+                        </Grid>
+                    </Border>
+
+
+
+                </SwipeView>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+
+</ContentPage>

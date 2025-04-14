@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppTodo.TodoDetailPage"
+             Title="TodoDetailPage">
+
+    <ScrollView>
+
+        <VerticalStackLayout Margin="20" Spacing="5">
+
+            <Label Text="{Binding ID, StringFormat='ID:{0}'}" />
+
+            <Label Text="Title:"/>
+            <Entry Text="{Binding Title}" Placeholder="Title" />
+            <Label Text="Detail:"/>
+            <Editor Text="{Binding Detail}" Placeholder="Detail" HeightRequest="100"/>
+
+            <Label Text="FirstName:"/>
+            <Entry Text="{Binding FirstName}" Placeholder="FirstName"/>
+            <Label Text="LastName:"/>
+            <Entry Text="{Binding LastName}" Placeholder="LastName"/>
+
+            <Label Text="StartDate:"/>
+            <DatePicker Date="{Binding StartDate}" MinimumDate="2025.01.01" />
+
+            <Label Text="EndDate:"/>
+            <DatePicker Date="{Binding EndDate}" MinimumDate="2025.01.01"/>
+
+            <Label Text="Completed:"/>
+            <Switch IsToggled="{Binding IsCompleted}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

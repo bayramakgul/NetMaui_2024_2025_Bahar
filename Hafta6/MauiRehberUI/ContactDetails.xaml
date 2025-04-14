@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiRehberUI.ContactDetails"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ContactDetails">
+
+    <VerticalStackLayout Spacing="10">
+        <Label Text="Resim" />
+        <Image Source="{Binding Picture}" />
+
+        <Button
+            Margin="5"
+            Background="Transparent"
+            BorderColor="Orange"
+            BorderWidth="1"
+            Text="Resim Seç"
+            TextColor="Blue" />
+
+        <Label Text="Adı" />
+        <Entry Placeholder="Adı" Text="{Binding Name}" />
+
+        <Label Text="Soyadı" />
+        <Entry Placeholder="Soyadı" Text="{Binding Surname}" />
+
+
+        <Label Text="Telefon No" />
+        <Entry
+            Keyboard="Telephone"
+            Placeholder="Telefon"
+            Text="{Binding PhoneNumber}" />
+
+
+        <Label Text="Email" />
+        <Entry
+            Keyboard="Email"
+            Placeholder="Email"
+            Text="{Binding Email}" />
+
+        <Label Text="Doğum Tarihi" />
+        <DatePicker Date="{Binding BirthDate}" />
+
+
+        <Label Text="Adress" />
+        <Editor Placeholder="Adres" Text="{Binding Address}" />
+
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button Clicked="OkClicked" Text="Tamam" />
+            <Button Clicked="CancelClicked" Text="İptal" />
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+
+</ContentPage>
