@@ -1,57 +1,92 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppEmlak.MainPage">
+<ContentPage
+    x:Class="MauiAppEmlak.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    
-    <CollectionView x:Name="lstIlanlar"
-                    ItemsSource="{Binding Ilanlar}"
-                    SelectionMode="Single"
-                    SelectionChanged="lstIlanlar_SelectionChanged"
-                    >
+
+    <CollectionView
+        x:Name="lstIlanlar"
+        ItemsSource="{Binding Ilanlar}"
+        SelectionChanged="lstIlanlar_SelectionChanged"
+        SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <SwipeView>
 
                     <FlyoutBase.ContextFlyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="📞 Telefon" Clicked="ButtonPhone_Clicked" />
-                            <MenuFlyoutItem Text="📧 Email" Clicked="ButtonEmail_Clicked"/>
-                            <MenuFlyoutItem Text="📝 Detay" Clicked="ButtonDetail_Clicked"/>
+                            <MenuFlyoutItem Clicked="ButtonPhone_Clicked" Text="📞 Telefon" />
+                            <MenuFlyoutItem Clicked="ButtonEmail_Clicked" Text="📧 Email" />
+                            <MenuFlyoutItem Clicked="ButtonDetail_Clicked" Text="📝 Detay" />
                         </MenuFlyout>
                     </FlyoutBase.ContextFlyout>
-                    
+
 
                     <SwipeView.LeftItems>
-                        <SwipeItem Text="iletişim" Clicked="SwipeItem_LeftClicked"/>
+                        <SwipeItem Clicked="SwipeItem_LeftClicked" Text="iletişim" />
                     </SwipeView.LeftItems>
                     <SwipeView.RightItems>
-                        <SwipeItem Text="Detay" IconImageSource="dotnet_bot.png" Clicked="SwipeItem_RightClicked"/>
+                        <SwipeItem
+                            Clicked="SwipeItem_RightClicked"
+                            IconImageSource="dotnet_bot.png"
+                            Text="Detay" />
                     </SwipeView.RightItems>
 
-                    <Border StrokeThickness="0.5" Margin="5" Padding="5">
-                        <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="5"
-                      ColumnDefinitions="100,*,Auto" ColumnSpacing="10">
+                    <Border
+                        Margin="5"
+                        Padding="5"
+                        StrokeThickness="0.5">
+                        <Grid
+                            ColumnDefinitions="100,*,Auto"
+                            ColumnSpacing="10"
+                            RowDefinitions="Auto,Auto,Auto"
+                            RowSpacing="5">
 
-                            <ActivityIndicator Grid.RowSpan="3"
-                            IsRunning="{Binding Source={x:Reference res}, Path=IsLoading}" />
+                            <ActivityIndicator Grid.RowSpan="3" IsRunning="{Binding Source={x:Reference res}, Path=IsLoading}" />
 
-                            <Image x:Name="res" Grid.RowSpan="3" Source="{Binding ResimLinkleri[0]}" 
-                           Aspect="AspectFill"/>
+                            <Image
+                                x:Name="res"
+                                Grid.RowSpan="3"
+                                Aspect="AspectFill"
+                                Source="{Binding ResimLinkleri[0]}" />
 
-                            <Label Grid.Column="1" Grid.Row="0"
-                           Text="{Binding IlanBasligi}" FontSize="20"/>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontSize="20"
+                                Text="{Binding IlanBasligi}" />
 
-                            <Label Grid.Column="1" Grid.Row="1"
-                           Text="{Binding Fiyat, StringFormat='💰₺{0:N0}'}" FontSize="16"/>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                FontSize="16"
+                                Text="{Binding Fiyat, StringFormat='💰₺{0:N0}'}" />
 
-                            <Label Grid.Column="1" Grid.Row="2"
-                           Text="{Binding Konum, StringFormat='📍{0}'}"/>
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="{Binding Konum, StringFormat='📍{0}'}" />
 
 
-                            <Button Grid.Column="2" Grid.Row="0" Text="📞" Clicked="ButtonPhone_Clicked" Background="Transparent"/>
-                            <Button Grid.Column="2" Grid.Row="1" Text="📧" Clicked="ButtonEmail_Clicked" Background="Transparent"/>
-                            <Button Grid.Column="2" Grid.Row="2" Text="📝" Clicked="ButtonDetail_Clicked" Background="Transparent"/>
+                            <Button
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Background="Transparent"
+                                Clicked="ButtonPhone_Clicked"
+                                Text="📞" />
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Background="Transparent"
+                                Clicked="ButtonEmail_Clicked"
+                                Text="📧" />
+                            <Button
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Background="Transparent"
+                                Clicked="ButtonDetail_Clicked"
+                                Text="📝" />
 
                         </Grid>
                     </Border>
