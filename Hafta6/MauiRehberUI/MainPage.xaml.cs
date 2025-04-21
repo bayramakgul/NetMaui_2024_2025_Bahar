@@ -1,7 +1,10 @@
-﻿using RehberBL;
+﻿using Microsoft.Maui.ApplicationModel.Communication;
+
+using RehberBL;
 
 using RehberEntity;
 
+using System.Runtime.InteropServices.Marshalling;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,25 +18,41 @@ namespace MauiRehberUI
         {
             InitializeComponent();
 
+            string message = string.Empty;
+            if(!BL.LoadContacts(ref message))
+                DisplayAlert("Hata", message, "Tamam");
+
+
             lstContacts.ItemsSource = BL.Contacts;
         }
-        
 
 
-        private void AddContactClicked(object sender, EventArgs e)
+
+        private async void AddContactClicked(object sender, EventArgs e)
         {
             MyContact contact = new MyContact();
-            ContactDetails page = new ContactDetails(contact);
-            Navigation.PushModalAsync(page);
+            ContactDetails page = new ContactDetails(contact)
+            {
+                PictureSelector = AddPicture
+            };
+            var saveTask = page.SaveTaskCompletion.Task;
+            await Navigation.PushModalAsync(page);
 
-            string message = string.Empty;
-            if (!BL.AddContact(contact, ref message))
-                DisplayAlert("Hata", message, "Tamam");
+            bool isOk = await saveTask; // Tamam tıkladıysam
+            if (isOk)
+            {
+                string message = string.Empty;
+                if (!BL.AddContact(contact, ref message))
+                    await DisplayAlert("Hata", message, "Tamam");
+            }
         }
 
         private async void DeleteContactClicked(object sender, EventArgs e)
         {
             var contact = (sender as MenuItem).CommandParameter as MyContact;
+            if (contact == null)
+                contact = lstContacts.SelectedItem as MyContact;
+
             var res = await DisplayAlert("Silmeyi onayla", "Silinsin mi", "Tamam", "İptal" );
 
             string message = string.Empty;
@@ -44,21 +63,52 @@ namespace MauiRehberUI
             }
         }
 
-        private void EditContactClicked(object sender, EventArgs e)
+        private async void EditContactClicked(object sender, EventArgs e)
         {
             var contact = (sender as MenuItem).CommandParameter as MyContact;
-            ContactDetails page = new ContactDetails(contact);
-            Navigation.PushModalAsync(page);
+            if (contact == null)
+                contact = lstContacts.SelectedItem as MyContact;
 
-            string message = string.Empty;
-            if (!BL.EditContact(contact, ref message))
-                DisplayAlert("Hata", message, "Tamam");
+            ContactDetails page = new ContactDetails(contact){ PictureSelector = AddPicture};
+            var saveTask = page.SaveTaskCompletion.Task;
+            await Navigation.PushModalAsync(page);
+
+            bool isOk = await saveTask; // Tamam tıkladıysam
+            if (isOk)
+            {
+                string message = string.Empty;
+                if (!BL.EditContact(contact, ref message))
+                    await DisplayAlert("Hata", message, "Tamam");
+            }
         }
+
+
 
         private async void AddPictureClicked(object sender, EventArgs e)
         {
             var contact = (sender as MenuItem).CommandParameter as MyContact;
+            if(contact == null)
+                contact = lstContacts.SelectedItem as MyContact;
 
+            var path = await GetPicture();
+            if (path != null)
+            {
+                contact.Picture = path;
+
+                string message = string.Empty;
+                if (!BL.EditContact(contact, ref message))
+                    DisplayAlert("Hata", message, "Tamam");
+            }
+
+        }
+
+        void  AddPicture(MyContact contact)
+        {
+            contact.Picture = GetPicture().Result;
+        }
+
+        async Task<string> GetPicture()
+        {
             string action = await DisplayActionSheet("Resim kaynağını seç", "İptal", null, "Kameradan Çek", "Galeriden Seç");
 
             FileResult result = null;
@@ -78,29 +128,17 @@ namespace MauiRehberUI
                 }
                 else if (action == "Galeriden Seç")
                 {
-                    result = await FilePicker.Default.PickAsync(new PickOptions
-                    {
-                        FileTypes = FilePickerFileType.Images,
-                        PickerTitle = "Bir resim seçin"
-                    });
+                    result = await MediaPicker.Default.PickPhotoAsync();
                 }
 
-                if (result != null)
-                {
-                    //var stream = await result.OpenReadAsync();
-                    contact.Picture = result.FullPath; //ImageSource.FromStream(() => stream).;
-
-                    string message = string.Empty;
-                    if (!BL.EditContact(contact, ref message))
-                        DisplayAlert("Hata", message, "Tamam");
-
-
-                }
+                return result.FullPath;
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Hata", $"Resim alınamadı: {ex.Message}", "Tamam");
             }
+
+            return null;
         }
     }
 

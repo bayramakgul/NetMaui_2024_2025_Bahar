@@ -9,12 +9,7 @@ namespace RehberBL
 {
     public static class BL
     {
-        public static ObservableCollection<MyContact> Contacts = new ObservableCollection<MyContact>
-        {
-            new MyContact("Ali", "Kara", "045565665", "alikara@mail.com" ),
-            new MyContact("Ayşe", "Sarı", "646546546", "aysesari@mail.com"),
-            new MyContact("Veli", "Beyaz", "056655445", "velibeyaz@mail.com"),
-        };
+        public static ObservableCollection<MyContact> Contacts;
 
         public static bool AddContact(MyContact contact, ref string message)
         {
@@ -48,6 +43,18 @@ namespace RehberBL
 
             return false;
 
+        }
+
+        public static bool LoadContacts(ref string message)
+        {
+            if (Contacts == null)
+                Contacts = new ObservableCollection<MyContact>();
+
+            if (DL.LoadContacts(Contacts, ref message))
+                return true;
+
+            return false;
+            
         }
     }
 }

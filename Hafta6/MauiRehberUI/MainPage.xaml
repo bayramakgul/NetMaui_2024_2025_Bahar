@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiRehberUI.MainPage">
+             x:Class="MauiRehberUI.MainPage"
+             >
 
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -14,14 +15,14 @@
     </ContentPage.ToolbarItems>
 
 
-    <CollectionView x:Name="lstContacts">
+    <CollectionView x:Name="lstContacts" SelectionMode="Single">
         <CollectionView.ItemTemplate>
             <DataTemplate>
 
                 <SwipeView>
 
                     <FlyoutBase.ContextFlyout>
-                        <MenuFlyout>
+                        <MenuFlyout >
                             <MenuFlyoutItem Clicked="AddPictureClicked"    Text="Resim Ekle" CommandParameter="{Binding}"/>
                             <MenuFlyoutItem Clicked="DeleteContactClicked" Text="Kişi Sil"   CommandParameter="{Binding}"/>
                             <MenuFlyoutItem Clicked="EditContactClicked"   Text="📝 Düzenle" CommandParameter="{Binding}"/>

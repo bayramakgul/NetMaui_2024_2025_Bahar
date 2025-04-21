@@ -93,7 +93,7 @@ namespace RehberEntity
                 if (_email != value)
                 {
                     _email = value;
-                    OnPropertyChanged(nameof(_email));
+                    OnPropertyChanged(nameof(Email));
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace RehberEntity
                 if (_picture != value)
                 {
                     _picture = value;
-                    OnPropertyChanged(nameof(_picture));
+                    OnPropertyChanged(nameof(Picture));
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace RehberEntity
                 if (_address != value)
                 {
                     _address = value;
-                    OnPropertyChanged(nameof(_address));
+                    OnPropertyChanged(nameof(Address));
                 }
             }
         }
@@ -132,7 +132,7 @@ namespace RehberEntity
                 if (_birthday != value)
                 {
                     _birthday = value;
-                    OnPropertyChanged(nameof(_birthday));
+                    OnPropertyChanged(nameof(BirthDay));
                 }
             }
         }
