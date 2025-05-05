@@ -15,7 +15,7 @@
     </ContentPage.ToolbarItems>
 
 
-    <CollectionView x:Name="lstContacts" SelectionMode="Single">
+    <CollectionView x:Name="lstContacts" SelectionMode="Single" Margin="10">
         <CollectionView.ItemTemplate>
             <DataTemplate>
 

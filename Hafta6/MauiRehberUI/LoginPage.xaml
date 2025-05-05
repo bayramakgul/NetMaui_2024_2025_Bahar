@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiRehberUI.LoginPage"
+             Title="LoginPage">
+
+    <ScrollView>
+
+        <VerticalStackLayout >
+
+            <VerticalStackLayout x:Name="loginStack">
+                <Label Text="Giriş Yap" FontSize="32" HorizontalOptions="Center" />
+                <Border Margin="10">
+                    <StackLayout Margin="10" Spacing="10">
+                        <Label Text="e-mail"/>
+                        <Entry x:Name="EmailLogin" Keyboard="Email" Placeholder="E-Mail"/>
+                        <Label Text="password"/>
+                        <Entry x:Name="PasswordLogin" IsPassword="True" Placeholder="Password" />
+
+                        <Button Text="Login" Clicked="Login_Clicked"/>
+                        <Button Text="Hesabım Yok" Clicked="ShowOtherStack_Clicked"
+                            Background="Transparent"
+                            TextColor="Blue" FontAttributes="Bold" />
+
+                    </StackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout x:Name="registerStack" IsVisible="False">
+                <Label Text="Kayıt Ol" FontSize="32" HorizontalOptions="Center" />
+                <Border Margin="10">
+                    <StackLayout Margin="10" Spacing="10">
+                        <Label x:Name="DisplayNameRegister" Text="Ad Soyad"/>
+                        <Entry Placeholder="Ad Soyad"/>
+                        <Label Text="e-mail"/>
+                        <Entry x:Name="EmailRegister" Keyboard="Email" Placeholder="E-Mail"/>
+                        <Label Text="password"/>
+                        <Entry x:Name="PasswordRegister" IsPassword="True" Placeholder="Password" />
+
+                        <Button Text="Kaydol" Clicked="Register_Clicked" />
+                        <Button Text="Zaten Hesabım Var" Clicked="ShowOtherStack_Clicked"
+                            Background="Transparent"
+                            TextColor="Blue" FontAttributes="Bold" />
+
+                    </StackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,4 +1,4 @@
-﻿#define MYSQL
+﻿#define FIREBASE
 
 #if(MYSQL)
 using MySql.Data.MySqlClient;
@@ -8,6 +8,12 @@ using DbCommand = MySql.Data.MySqlClient.MySqlCommand;
 using System.Data.SqlClient;
 using DbConnection = System.Data.SqlClient.SqlConnection;
 using DbCommand = System.Data.SqlClient.SqlCommand;
+
+#elif FIREBASE
+using Firebase.Auth;
+using Firebase.Auth.Providers;
+using Firebase.Database;
+using Firebase.Database.Query;
 #endif
 
 using RehberEntity;
@@ -32,18 +38,193 @@ namespace RehberDL
             Port = 3306,
             SslMode = MySqlSslMode.Disabled,
         }.ConnectionString;
-#else
+#elif (SQLSERVER)
         static string conString = new SqlConnectionStringBuilder()
         {
             
             
         }.ConnectionString;
-#endif
+
+#elif (FIREBASE)
+        static string conString = "https://mycontacts2025-2defa-default-rtdb.firebaseio.com/";
+       static FirebaseClient client = new FirebaseClient(conString);
+
+        static string apiKey = "AIzaSyAt9xTPUj2UKIugetMLerZsEKH8yiq0z9c";
+        static string projectId => "mycontacts2025-2defa";
+        static string AuthDomain = $"{projectId}.firebaseapp.com";
+
+        static FirebaseAuthConfig authConfig = new FirebaseAuthConfig
+        {
+            ApiKey = apiKey,
+            AuthDomain = AuthDomain,
+            Providers = new FirebaseAuthProvider[]
+            {
+                new EmailProvider()
+            }
+        };
+
 
 
         public static bool AddContact(MyContact contact, ref string message)
         {
 
+            try
+            {
+                var result = client
+                    .Child($"contacts/{contact.ID}")
+                    .PutAsync(contact);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return false;
+            }
+        }
+
+        public static bool EditContact(MyContact contact, ref string message)
+        {
+            try
+            {
+                var result = client
+                    .Child($"contacts/{contact.ID}")
+                    .PutAsync(contact);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return false;
+            }
+        }
+
+        public static bool RemoveContact(MyContact contact, ref string message)
+        {
+            try
+            {
+                var result = client
+                    .Child($"contacts/{contact.ID}")
+                    .DeleteAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return false;
+            }
+        }
+
+        public static bool LoadContacts(ObservableCollection<MyContact> contacts, ref string message)
+        {
+            try
+            {
+                var result = client
+                    .Child("contacts")
+                    .OnceAsync<MyContact>().Result;
+                foreach (var item in result)
+                {
+                    contacts.Add(item.Object);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return false;
+            }
+        }
+
+
+        //public static bool Register(string email, string password, string displayName, ref string message)
+        //{
+        //    var client = new FirebaseAuthClient(authConfig);
+        //    try
+        //    {
+        //        var res = client.CreateUserWithEmailAndPasswordAsync(email, password, displayName);
+        //        if (res.Exception != null)
+        //        {
+        //            message = res.Exception.Message;
+        //            return false;
+        //        }
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = ex.Message;
+        //        return false;
+        //    }
+        //}
+
+        //public static bool Login(string email, string password, ref string message)
+        //{
+        //    try
+        //    {
+        //        var client = new FirebaseAuthClient(authConfig);
+        //        var res = client.SignInWithEmailAndPasswordAsync(email, password);
+        //        return res.Result.User != null;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = ex.Message;
+        //        return false;
+        //    }
+        //}
+
+
+        public static async Task<(bool ok, string message)> Register(string email, string password, string displayName)
+        {
+            try
+            {
+                var client = new FirebaseAuthClient(authConfig);
+                var result = await client.CreateUserWithEmailAndPasswordAsync(email, password, displayName);
+
+                // Kullanıcının ismi güncellenmemiş olabilir, gerekirse tekrar ayarla
+                var user = result.User;
+                string message = "Kayıt başarılı.";
+                return (true, message);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        public static async Task<(bool ok, string message)> Login(string email, string password)
+        {
+            try
+            {
+                var client = new FirebaseAuthClient(authConfig);
+                var result = await client.SignInWithEmailAndPasswordAsync(email, password);
+                string message = "";
+
+                if (result.User != null)
+                {
+                    message = "Giriş başarılı.";
+                    return (true, message);
+                }
+
+                message = "Giriş başarısız.";
+                return (false, message);
+            }
+            catch (Exception ex)
+            {
+                return (false,  ex.Message);
+            }
+        }
+
+
+
+
+#endif
+
+
+#if (FIREBASE)
+
+
+#else
+
+        public static bool AddContact(MyContact contact, ref string message)
+        {
             using (DbConnection connection = new DbConnection(conString))
             {
                 connection.Open();
@@ -71,6 +252,7 @@ namespace RehberDL
                     return false;
                 }
             }
+
         }
 
         public static bool EditContact(MyContact contact, ref string message)
@@ -182,5 +364,7 @@ namespace RehberDL
                 }
             }
         }
+#endif
+
     }
 }
