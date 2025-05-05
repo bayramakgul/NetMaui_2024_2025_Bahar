@@ -56,5 +56,18 @@ namespace RehberBL
             return false;
             
         }
+
+        public static async Task<(bool ok,string message)> Register(string email, string password, string displayName)
+        {
+
+            return await DL.Register(email, password, displayName);
+        }
+
+        public static async Task<(bool ok, string message)> Login(string email, string password)
+        {
+
+            return await DL.Login(email, password);
+        }
+
     }
 }

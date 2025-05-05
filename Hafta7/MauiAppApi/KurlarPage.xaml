@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppApi.KurlarPage"
+             Title="KurlarPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Güncelle" Clicked="RefreshView_Refreshing_KurBilgileri" />
+    </ContentPage.ToolbarItems>
+
+
+    <RefreshView Refreshing="RefreshView_Refreshing_KurBilgileri" x:Name="refreshView">
+
+        <ListView x:Name="lstKurlar">
+            <ListView.Header>
+                <Grid ColumnDefinitions="2*,*,*,*">
+                    <Label Grid.Column="0" Text="Kur Adı" FontAttributes="Bold" HorizontalOptions="Start" />
+                    <Label Grid.Column="1" Text="Alış"   FontAttributes="Bold" HorizontalOptions="Start" />
+                    <Label Grid.Column="2" Text="Satış"  FontAttributes="Bold" HorizontalOptions="Start" />
+                    <Label Grid.Column="3" Text="Çapraz" FontAttributes="Bold" HorizontalOptions="Start" />
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnDefinitions="2*,*,*,*">
+                            <Label Grid.Column="0" Text="{Binding Isim}"         HorizontalOptions="Start" />
+                            <Label Grid.Column="1" Text="{Binding ForexBuying}"  HorizontalOptions="Start" />
+                            <Label Grid.Column="2" Text="{Binding ForexSelling}" HorizontalOptions="Start" />
+                            <Label Grid.Column="3" Text="{Binding CrossRateUSD}" HorizontalOptions="Start" />
+                        </Grid>
+                    </ViewCell>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </RefreshView>
+    
+</ContentPage>

@@ -131,7 +131,7 @@ namespace MauiRehberUI
                     result = await MediaPicker.Default.PickPhotoAsync();
                 }
 
-                return result.FullPath;
+                return result?.FullPath;
             }
             catch (Exception ex)
             {
