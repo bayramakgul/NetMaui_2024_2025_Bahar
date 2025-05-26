@@ -7,8 +7,8 @@
     Title="MauiAppHaberler">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Haberler"
+        ContentTemplate="{DataTemplate local:MauiPageHaberler}"
+        Route="MauiPageHaberler" />
 
 </Shell>

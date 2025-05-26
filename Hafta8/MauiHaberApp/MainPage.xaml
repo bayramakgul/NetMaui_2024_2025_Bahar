@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiHaberApp.MainPage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <CollectionView x:Name="lstKategoriler"   Grid.Row="0"
+                        ItemsSource="{Binding HaberKategorileri}">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" 
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Button Text="{Binding KategoriAdi}"
+                            CommandParameter="{Binding}"
+                            Background="Transparent"
+                            TextColor="Red"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Clicked="Kategori_Clicked"/>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <CollectionView x:Name="lstHaberler" Grid.Row="1" 
+                        SelectionMode="Single"
+                        SelectionChanged="lstHaberler_SelectionChanged" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Margin="20">
+                        <Image Source="{Binding enclosure.link}"
+                                   HeightRequest="200"/>
+                        <Label Text="{Binding title}"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" />
+
+                        <HorizontalStackLayout HorizontalOptions="Center">
+                            <Label Text="{Binding author}" />
+                            <Label Text=" | "/>
+                            <Label Text="{Binding pubDate}" />
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
